@@ -9,4 +9,10 @@ public class PlayerStat : ScriptableObject
     public int level;
     public int maxHp;
     public int currentHp;
+    public float speed;
+    public int damage;
+    public int strength;
+    public int dexterity;
+    public int intelligence;
+    public int luck;
 }

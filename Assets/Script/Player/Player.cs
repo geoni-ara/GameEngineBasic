@@ -6,16 +6,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     float h, v;
+    float speed;
+    
+    PlayerStat stat;
+    
     Vector3 pDir;
     Rigidbody2D rigid;
+    SpriteRenderer spriteRenderer;
     public GameObject dectOb;
-    // Start is called before the first frame update
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        stat = Resources.Load<PlayerStat>("Prefab/Player/Player1");
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();
@@ -25,15 +31,23 @@ public class Player : MonoBehaviour
     void Move(){
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
-        rigid.velocity = new Vector2(3*h,3*v);
+        
+        speed = stat.speed;
+        rigid.velocity = new Vector2(speed*h,speed*v);
+
+        //움직임에 따른 방향 전환
+        if(h > 0){
+            spriteRenderer.flipX = false;
+        }else if(h < 0){
+            spriteRenderer.flipX =true;
+        }
     }
 
     void Detect(){
         if(h !=0 || v != 0){
-            pDir = new Vector3(h,v,0);    
+            pDir = new Vector3(h,v,0);
         }
-        Debug.DrawRay(rigid.position, 0.7f*pDir, Color.red);
-        var objectHit = Physics2D.Raycast(rigid.position, pDir,0.7f, LayerMask.GetMask("Npc"));
+        var objectHit = Physics2D.Raycast(rigid.position, pDir,0.7f, LayerMask.GetMask("Npc")); //특정 layer인 게임 오브젝트 감지
         if(objectHit.collider != null){
             dectOb = objectHit.collider.gameObject;
         }
