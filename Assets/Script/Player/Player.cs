@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        Detect();
     }
 
     void Move(){
@@ -37,19 +36,9 @@ public class Player : MonoBehaviour
 
         //움직임에 따른 방향 전환
         if(h > 0){
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }else if(h < 0){
-            spriteRenderer.flipX =true;
-        }
-    }
-
-    void Detect(){
-        if(h !=0 || v != 0){
-            pDir = new Vector3(h,v,0);
-        }
-        var objectHit = Physics2D.Raycast(rigid.position, pDir,0.7f, LayerMask.GetMask("Npc")); //특정 layer인 게임 오브젝트 감지
-        if(objectHit.collider != null){
-            dectOb = objectHit.collider.gameObject;
+            spriteRenderer.flipX =false;
         }
     }
 }
