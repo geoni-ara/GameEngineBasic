@@ -15,10 +15,6 @@ MonoBehaviour:
   nickName: 
   level: 1
   maxHp: 10
-  currentHp: 10
+  currentHp: 8
   speed: 2.5
   damage: 1
-  strength: 1
-  dexterity: 1
-  intelligence: 1
-  luck: 1

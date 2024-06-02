@@ -29,19 +29,8 @@ public class GameManager : MonoBehaviour
 
     public void UpdateStat(){
         resultStat.maxHp = playerStat.maxHp + itemStat.maxHp;
+        resultStat.currentHp = playerStat.currentHp + itemStat.currentHp;
         resultStat.speed = playerStat.speed + itemStat.speed;
-        // foreach(string stat in PlayerStat.datas.Keys){
-        //     if(stat == "nickName")
-        //         continue;
-
-        //     Type type = PlayerStat.datas[stat].GetValue(itemStat).GetType();
-
-        //     double defalutStat = Convert.ToDouble(PlayerStat.datas[stat].GetValue(playerStat));
-        //     double item = Convert.ToDouble(PlayerStat.datas[stat].GetValue(itemStat));
-
-        //     object returnValue = Convert.ChangeType(defalutStat + item, Type.GetTypeCode(type));
-
-        //     PlayerStat.datas[stat].SetValue(resultStat, returnValue);
-        // }
+        resultStat.damage = playerStat.damage + itemStat.damage;
     }
 }

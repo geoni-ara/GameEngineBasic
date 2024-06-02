@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,18 +9,15 @@ public class Player : MonoBehaviour
     float h, v;
     float speed;
     
-    PlayerStat stat;
-    
-    Vector3 pDir;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
-    public GameObject dectOb;
+    Animator anim;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        stat = Resources.Load<PlayerStat>("Prefab/Player/Player1");
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -31,14 +29,28 @@ public class Player : MonoBehaviour
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
         
-        speed = stat.speed;
+        speed = GameManager.info.resultStat.speed;
         rigid.velocity = new Vector2(speed*h,speed*v);
 
+        if (h != 0 || v != 0){
+            anim.SetBool("isWalk",true);
+        }
+        else{
+            anim.SetBool("isWalk",false);
+        }
         //움직임에 따른 방향 전환
         if(h > 0){
             spriteRenderer.flipX = true;
         }else if(h < 0){
             spriteRenderer.flipX =false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col){
+        if(col.gameObject.layer == 6){
+            GameManager.info.resultStat.currentHp -= 1;
+            HPManager hpbar = FindObjectOfType<HPManager>();
+            hpbar.UpdateSlider();
         }
     }
 }
