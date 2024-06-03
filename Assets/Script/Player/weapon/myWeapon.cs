@@ -11,6 +11,7 @@ public struct WeaponSetting{
         public float damageCoaf;
         public float cooldown;
         public Vector2 forwardSpeed;
+        public int WeaponLevel;
     }
 public abstract class myWeapon : MonoBehaviour
 {
