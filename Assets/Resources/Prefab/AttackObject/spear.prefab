@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2838222795250938178}
   - component: {fileID: 2418299650322133360}
   - component: {fileID: 2097857672056928176}
+  - component: {fileID: -80380118091532574}
   m_Layer: 8
   m_Name: spear
   m_TagString: Untagged
@@ -114,9 +115,21 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.0000002, y: 2.0000005}
   m_Direction: 0
+--- !u!114 &-80380118091532574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471683961521832675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b833fce42e8f3b84d934509408e941fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

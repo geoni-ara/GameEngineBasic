@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     public PlayerStat playerStat;
     public PlayerStat itemStat;
     public PlayerStat resultStat;
+
+    public MonsterManager monsterManager;
+
+    public float playTime;
+    public int level;
     public void Awake() {
         if (instance == null) {
             instance = this;
@@ -27,6 +32,10 @@ public class GameManager : MonoBehaviour
         UpdateStat();
     }
 
+    void Update() {
+        playTime += Time.deltaTime;
+        level = Mathf.FloorToInt(GameManager.info.playTime/10);
+    }
     public void UpdateStat(){
         resultStat.maxHp = playerStat.maxHp + itemStat.maxHp;
         resultStat.currentHp = playerStat.currentHp + itemStat.currentHp;

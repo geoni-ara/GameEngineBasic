@@ -22,8 +22,8 @@ public class flooring : MonoBehaviour
     void OnTriggerStay2D(Collider2D other){
         if (other.gameObject.layer == 9 && cooldown <= 0){
             monster monSc = other.gameObject.GetComponent<monster>();
-            monSc.Damaged(3);
-            cooldown += 1;
+            monSc.Damaged(10);
+            cooldown += 0.5f;
         }
     }
 }
