@@ -9,23 +9,22 @@ public class spear : myWeapon
     {
         Weapon.atkObject = Resources.Load<GameObject>("Prefab/AttackObject/spear");
         Weapon.damageCoaf = 1;
-        Weapon.cooldown = 0.5f;
+        Weapon.cooldown = 1;
         Weapon.WeaponLevel = 1;
         Weapon.forwardSpeed = 5;
-        Weapon.disappearTime = 5;
+        Weapon.disappearTime = 3;
         Weapon.penetrate = 2;
+        Weapon.sizeCoaf = 1;
+        Weapon.atkType = "projectile";
+        Weapon.name = "spear";
+        Weapon.description = "Damage x 1.1 \ncooldown x 0.9";
     }
 
     public override void LevelUp()
     {
-        Weapon.damageCoaf += 0.1f;
+        Weapon.WeaponLevel ++;
+        Weapon.damageCoaf *= 1.1f;
         Weapon.cooldown *= 0.9f;
     }
 
-    public override void Using()
-    {
-        GameObject atk = Instantiate(Weapon.atkObject, transform.position,Quaternion.identity);
-        attackObject atkSc = atk.GetComponent<attackObject>();
-        atkSc.setState(Weapon);
-    }
 }

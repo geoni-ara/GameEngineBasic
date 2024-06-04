@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public class attackObject : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         setDir();
+        if(weapon.atkType == "melee"){
+            setPos();
+        }
         Invoke("Disappear", weapon.disappearTime);
     }
 
@@ -21,6 +25,9 @@ public class attackObject : MonoBehaviour
     void Update()
     {
         move();
+        if(weapon.atkType == "area"){
+            location();
+        }
         if(weapon.penetrate ==0){
             Disappear();
         }
@@ -34,7 +41,7 @@ public class attackObject : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.layer == 9){
             monster monSc = other.gameObject.GetComponent<monster>();
-            monSc.Damaged(8);
+            monSc.Damaged(Mathf.FloorToInt(GameManager.info.resultStat.damage * weapon.damageCoaf));
             weapon.penetrate --;
         }
     }
@@ -49,5 +56,14 @@ public class attackObject : MonoBehaviour
     }
     void Disappear(){
         Destroy(gameObject);
+    }
+    void location(){
+        transform.position = GameManager.info.wControl.transform.position;
+    }
+    void setPos(){
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        Vector3 movePos = new Vector3(h,v,0).normalized;
+        transform.position = movePos + GameManager.info.wControl.transform.position;
     }
 }

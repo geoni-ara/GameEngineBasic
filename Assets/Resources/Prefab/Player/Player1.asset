@@ -16,6 +16,6 @@ MonoBehaviour:
   level: 1
   currentExp: 0
   maxHp: 10
-  currentHp: 8
+  currentHp: 10
   speed: 5
   damage: 10

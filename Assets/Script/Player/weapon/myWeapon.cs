@@ -14,19 +14,20 @@ public struct WeaponSetting{
         public int WeaponLevel;
         public float disappearTime;
         public int penetrate;
-        public Transform target;
+        public float sizeCoaf;
+        public string name;
+        public string description;
+        public string atkType;
+        public Transform target; 
     }
 public abstract class myWeapon : MonoBehaviour
 {
     public WeaponSetting Weapon;
     public abstract void InitSetting();
     public abstract void LevelUp();
-    /*
     public virtual void Using(){
         GameObject atk = Instantiate(Weapon.atkObject, transform.position,Quaternion.identity);
         attackObject atkSc = atk.GetComponent<attackObject>();
         atkSc.setState(Weapon);
     }
-    */
-    public abstract void Using();
 }

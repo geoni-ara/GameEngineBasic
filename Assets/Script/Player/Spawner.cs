@@ -12,7 +12,8 @@ public class SpawnData{
 public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
-    public SpawnData[] spawnData;
+    float spawnTime =0.8f;
+    public float spawnCoaf; 
     float timer;
 
     void Awake(){
@@ -22,7 +23,8 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 0.5f){
+        spawnCoaf = GameManager.info.level*0.1f +1;
+        if (timer > spawnTime/spawnCoaf){
             Spawn();
             timer = 0;
         }

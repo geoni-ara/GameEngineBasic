@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        if(GameManager.info.resultStat.currentHp <= 0){
+            Dead();
+        }
     }
 
     void Move(){
@@ -52,5 +56,10 @@ public class Player : MonoBehaviour
             HPManager hpbar = FindObjectOfType<HPManager>();
             hpbar.UpdateSlider();
         }
+    }
+
+    void Dead(){
+        Time.timeScale = 0;
+        SceneManager.LoadScene("GlassArea");
     }
 }

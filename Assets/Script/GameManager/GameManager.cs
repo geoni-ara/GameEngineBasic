@@ -15,17 +15,19 @@ public class GameManager : MonoBehaviour
     public PlayerStat playerStat;
     public PlayerStat itemStat;
     public PlayerStat resultStat;
+    public weaponController wControl;
 
     public MonsterManager monsterManager;
     public expManager expBar;
     public TMP_Text timerText;
+    public GameObject lvObject;
 
-    public float playTime;
+    float playTime;
     public int level;
+    bool gameStart = false;
     public void Awake() {
         if (instance == null) {
             instance = this;
-            DontDestroyOnLoad(this);
         }
         else {
             Destroy(this);
@@ -33,12 +35,17 @@ public class GameManager : MonoBehaviour
 
         itemStat = ScriptableObject.CreateInstance<PlayerStat>();
         resultStat = ScriptableObject.CreateInstance<PlayerStat>();
-
+        wControl = FindAnyObjectByType<weaponController>();
+        Time.timeScale = 0;
         UpdateStat();
     }
 
     void Update() {
         Timer();
+        if(!gameStart && Input.anyKeyDown){
+            Time.timeScale = 1;
+            gameStart = true;
+        }
     }
     public void UpdateStat(){
         resultStat.maxHp = playerStat.maxHp + itemStat.maxHp;
@@ -57,7 +64,8 @@ public class GameManager : MonoBehaviour
     void Levelup(){
         resultStat.level++;
         resultStat.currentExp = 0;
-        Debug.Log("Level Up");
+        resultStat.currentHp +=2;
+        lvObject.SetActive(true);
     }
     void Timer(){
         playTime += Time.deltaTime;

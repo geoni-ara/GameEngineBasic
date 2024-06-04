@@ -1,29 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class weaponController : MonoBehaviour
 {
-    public myWeapon flooring;
-    public myWeapon spear;
-    public myWeapon slash;
+    public myWeapon[] myWeapons;
     public float scanRange;
     public LayerMask targetLayer;
     public RaycastHit2D[] targets;
     public Transform nearestT;
     
     Rigidbody2D rigid;
-    public float spearcool;
-    float slashcool;
+    public float[] cool;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        spearcool = spear.Weapon.cooldown;
-        //slashcool = slash.Weapon.cooldown;
-        //flooring.InitSetting();
-        spear.InitSetting();
-        //slash.InitSetting();
+        cool = new float[myWeapons.Length];
+        for (int i = 0;i<myWeapons.Length;i++){
+            if(myWeapons[i] != null){
+                myWeapons[i].InitSetting();
+                cool[i] = myWeapons[i].Weapon.cooldown;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -34,23 +34,17 @@ public class weaponController : MonoBehaviour
         nearestT = getNear();
     }
     void Attack(){
-        if(spearcool > 0){
-            spearcool -= Time.deltaTime;
-        }else{
-            if(nearestT != null){
-                spear.Weapon.target = nearestT;
-                spear.Using();
-                spearcool = spear.Weapon.cooldown;
+        for (int i = 0;i<myWeapons.Length;i++){
+            if(cool[i] >0){
+                cool[i] -= Time.deltaTime;
+            }else{
+                if(nearestT != null && myWeapons[i].Weapon.WeaponLevel != 0){
+                    myWeapons[i].Weapon.target = nearestT;
+                    myWeapons[i].Using();
+                    cool[i] = myWeapons[i].Weapon.cooldown;
+                }
             }
         }
-        /*
-        if(slashcool >0){
-            slashcool -= Time.deltaTime;
-        }else{
-            slash.Using();
-            slashcool += slash.Weapon.cooldown;
-        }
-        */
     }
 
     Transform getNear(){
