@@ -8,6 +8,7 @@ public class PlayerStat : ScriptableObject
 {
     public string nickName;
     public int level;
+    public int currentExp;
     public int maxHp;
     public int currentHp;
     public float speed;

@@ -14,13 +14,16 @@ public class attackObject : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         setDir();
-        Invoke("Disappear", 2);
+        Invoke("Disappear", weapon.disappearTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        move();   
+        move();
+        if(weapon.penetrate ==0){
+            Disappear();
+        }
     }
 
     void move(){
@@ -31,8 +34,8 @@ public class attackObject : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.layer == 9){
             monster monSc = other.gameObject.GetComponent<monster>();
-            monSc.Damaged(10);
-            Debug.Log("target Pos =" + dir);
+            monSc.Damaged(8);
+            weapon.penetrate --;
         }
     }
 

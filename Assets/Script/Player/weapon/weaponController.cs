@@ -14,7 +14,7 @@ public class weaponController : MonoBehaviour
     public Transform nearestT;
     
     Rigidbody2D rigid;
-    float spearcool;
+    public float spearcool;
     float slashcool;
     void Start()
     {
@@ -37,9 +37,11 @@ public class weaponController : MonoBehaviour
         if(spearcool > 0){
             spearcool -= Time.deltaTime;
         }else{
-            spear.Weapon.target = nearestT;
-            spear.Using();
-            spearcool += spear.Weapon.cooldown;
+            if(nearestT != null){
+                spear.Weapon.target = nearestT;
+                spear.Using();
+                spearcool = spear.Weapon.cooldown;
+            }
         }
         /*
         if(slashcool >0){

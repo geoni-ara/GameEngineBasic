@@ -12,6 +12,8 @@ public struct WeaponSetting{
         public float cooldown;
         public int forwardSpeed;
         public int WeaponLevel;
+        public float disappearTime;
+        public int penetrate;
         public Transform target;
     }
 public abstract class myWeapon : MonoBehaviour

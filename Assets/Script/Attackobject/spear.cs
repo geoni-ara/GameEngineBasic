@@ -12,6 +12,8 @@ public class spear : myWeapon
         Weapon.cooldown = 0.5f;
         Weapon.WeaponLevel = 1;
         Weapon.forwardSpeed = 5;
+        Weapon.disappearTime = 5;
+        Weapon.penetrate = 2;
     }
 
     public override void LevelUp()
