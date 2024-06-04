@@ -11,6 +11,7 @@ public class spear : myWeapon
         Weapon.damageCoaf = 1;
         Weapon.cooldown = 0.5f;
         Weapon.WeaponLevel = 1;
+        Weapon.forwardSpeed = 5;
     }
 
     public override void LevelUp()

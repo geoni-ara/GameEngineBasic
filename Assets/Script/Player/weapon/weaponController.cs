@@ -37,6 +37,7 @@ public class weaponController : MonoBehaviour
         if(spearcool > 0){
             spearcool -= Time.deltaTime;
         }else{
+            spear.Weapon.target = nearestT;
             spear.Using();
             spearcool += spear.Weapon.cooldown;
         }

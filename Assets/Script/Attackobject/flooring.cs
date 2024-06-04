@@ -23,7 +23,7 @@ public class flooring : MonoBehaviour
         if (other.gameObject.layer == 9 && cooldown <= 0){
             monster monSc = other.gameObject.GetComponent<monster>();
             monSc.Damaged(10);
-            cooldown += 0.5f;
+            cooldown += 0.3f;
         }
     }
 }

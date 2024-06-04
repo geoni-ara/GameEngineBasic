@@ -10,8 +10,9 @@ public struct WeaponSetting{
         public GameObject atkObject;
         public float damageCoaf;
         public float cooldown;
-        public Vector2 forwardSpeed;
+        public int forwardSpeed;
         public int WeaponLevel;
+        public Transform target;
     }
 public abstract class myWeapon : MonoBehaviour
 {

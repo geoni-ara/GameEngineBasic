@@ -43,6 +43,5 @@ public class monster : MonoBehaviour
         if(hp<=0){
             isLive = false;
         }
-        Debug.Log("현재 체력 : " + hp);
     }
 }
