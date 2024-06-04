@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class flooring : myWeapon
 {
     public override void InitSetting()
     {
         Weapon.atkObject = Resources.Load<GameObject>("Prefab/AttackObject/flooring");
+        Weapon.image = Resources.Load<Sprite>("Prefab/AttackObject/floorImg");
         Weapon.damageCoaf = 0.5f;
         Weapon.cooldown = 1;
         Weapon.WeaponLevel = 0;

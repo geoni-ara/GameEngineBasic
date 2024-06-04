@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUp : MonoBehaviour
 {
     public weaponController wControl;
     public myWeapon skill;
     public TMP_Text SkillText;
+    public Image image;
     void OnEnable(){
         wControl = GameManager.info.wControl;
         reloadSkill();
@@ -19,6 +21,7 @@ public class LevelUp : MonoBehaviour
         }
         SkillText.text = skill.Weapon.name+ "\n"+skill.Weapon.description;
         Time.timeScale = 0;
+        image.sprite = skill.Weapon.image;
     } 
     public void onClick(){
         skill.LevelUp();

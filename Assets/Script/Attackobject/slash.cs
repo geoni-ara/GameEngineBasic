@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class slash : myWeapon
 {
     public override void InitSetting()
     {
         Weapon.atkObject = Resources.Load<GameObject>("Prefab/AttackObject/slash");
+        Weapon.image = Resources.Load<Sprite>("Prefab/AttackObject/slashImg");
         Weapon.damageCoaf = 1.2f;
         Weapon.cooldown = 1;
         Weapon.WeaponLevel = 0;

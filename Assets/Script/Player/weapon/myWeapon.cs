@@ -18,6 +18,7 @@ public struct WeaponSetting{
         public string name;
         public string description;
         public string atkType;
+        public Sprite image;
         public Transform target; 
     }
 public abstract class myWeapon : MonoBehaviour

@@ -36,7 +36,7 @@ public class attackObject : MonoBehaviour
     void move(){
         rigid.velocity = weapon.forwardSpeed* dir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0,0,angle+90);
+        transform.rotation = Quaternion.Euler(0,0,angle+180);
     }
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.layer == 9){

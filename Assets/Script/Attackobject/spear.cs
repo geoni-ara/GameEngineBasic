@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class spear : myWeapon
 {
     public override void InitSetting()
     {
         Weapon.atkObject = Resources.Load<GameObject>("Prefab/AttackObject/spear");
+        Weapon.image = Resources.Load<Sprite>("Prefab/AttackObject/boltImg");
         Weapon.damageCoaf = 1;
         Weapon.cooldown = 1;
         Weapon.WeaponLevel = 1;
