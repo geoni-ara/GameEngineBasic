@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     public PlayerStat playerStat;
-    public PlayerStat itemStat;
     public PlayerStat resultStat;
     public weaponController wControl;
 
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        itemStat = ScriptableObject.CreateInstance<PlayerStat>();
         resultStat = ScriptableObject.CreateInstance<PlayerStat>();
         wControl = FindAnyObjectByType<weaponController>();
         Time.timeScale = 0;
@@ -48,10 +46,10 @@ public class GameManager : MonoBehaviour
         }
     }
     public void UpdateStat(){
-        resultStat.maxHp = playerStat.maxHp + itemStat.maxHp;
-        resultStat.currentHp = playerStat.currentHp + itemStat.currentHp;
-        resultStat.speed = playerStat.speed + itemStat.speed;
-        resultStat.damage = playerStat.damage + itemStat.damage;
+        resultStat.maxHp = playerStat.maxHp;
+        resultStat.currentHp = playerStat.currentHp;
+        resultStat.speed = playerStat.speed;
+        resultStat.damage = playerStat.damage;
         resultStat.level = playerStat.level;
     }
     public void getExp(int exp){
